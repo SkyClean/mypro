@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DSMusicPlayer>
+    <configuration>
+        <artworlBlur>6px</artworlBlur>
+        <autoplay>false</autoplay>
+        <shareButton>true</shareButton>
+        <muteButton>true</muteButton>
+        <repeatButton>true</repeatButton>
+        <shuffleButton>true</shuffleButton>
+    </configuration>
+    <playlist>
+        <track>
+            <artist>Dua Lipa</artist>
+            <title>Be The One</title>
+            <url>./audio/music0.mp3</url>
+            <artwork>./audio/music0.jpg</artwork>
+            <apple>https://itunes.apple.com/gb/album/be-the-one-single/id1050412243</apple>
+            <amazon>https://www.amazon.co.uk/gp/product/B016W01A6O</amazon>
+            <download>true</download>
+        </track>
+        <track>
+            <artist>Pitbull ft. Chris Brown</artist>
+            <title>International Love</title>
+            <url>./audio/music5.mp3</url>
+            <artwork>./audio/music5.jpg</artwork>
+            <apple>https://itunes.apple.com/nz/album/international-love-feat.-chris/id439380081</apple>
+            <download>false</download>
+        </track>
+    </playlist>
+</DSMusicPlayer>
