@@ -3,9 +3,6 @@
 error_reporting(E_ERROR | E_PARSE);
 
 require_once ('./config.php');
-require_once ('./ssh2-master/src/autoload.php');
-use Ssh\Client;
-use Ssh\Auth\Password;
 
 
 function get_next_server_id($last_server_id){
