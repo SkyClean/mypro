@@ -70,7 +70,7 @@
           res = confirm("Do you really want to delete this item?");
           if (res){
             $.ajax({
-              url:'/services/' + id,
+              url:'/servers/' + id,
               type:'delete'
             }).then(function(ret){
                 console.log(ret);
