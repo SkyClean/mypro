@@ -25,7 +25,7 @@ class HomeController extends Controller
     {
         $servers = Server::paginate(50);
         $search = "";
-        return view('servers', [
+        return view('ssher', [
           'servers' => $servers,
           'search' => $search
         ]);

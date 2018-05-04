@@ -35,10 +35,10 @@ class ConnectionController extends Controller
       $activity = Act::where('id', $server->current_act_id)->first();
 
       $servers = Server::all();
-      $activities = Act::where('server_id', $server->id)->orderby('created_at', 'desc')->paginate(20);
+      $activities = Act::orderby('created_at', 'desc')->paginate(20);
 
       Log::info($activity);
-      return view('connect', [
+      return view('connect0', [
         'server' => $server,
         'activities' => $activities,
         'servers' => $servers,
@@ -48,7 +48,7 @@ class ConnectionController extends Controller
 
     public function makeconnect(Request $request, $id){
       $server = Server::find($id);
-      if (!$server->is_connected){
+
         $act_name = $request->input('act_name');
         $act_description = $request->input('act_description');
         $server_id = $id;
@@ -59,22 +59,20 @@ class ConnectionController extends Controller
           'description' => $act_description
         ]);
 
-        $cmd = Cmd::create([
-          'server_id'  => $id,
-          'action' => 'connect',
-          'act_name' => $act_name,
-          'act_description' => $act_description,
-          'act_id' => $act->id
-        ]);
+        // $cmd = Cmd::create([
+        //   'server_id'  => $id,
+        //   'action' => 'connect',
+        //   'act_name' => $act_name,
+        //   'act_description' => $act_description,
+        //   'act_id' => $act->id
+        // ]);
 
         $server->is_connected = true;
         $server->current_act_id = $act->id;
         $server->current_path = NULL;
         $server->save();
-        return $cmd->id;
-      }
+        return array('server_id' => $server->id, 'act' => $act);
 
-      return 'already connected';
     }
 
     public function disconnect(Request $request, $id){

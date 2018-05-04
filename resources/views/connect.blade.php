@@ -14,6 +14,7 @@
   background-color: #000;
   color:#fff;
 }
+
 </style>
 @section('content')
 <section role="main" class="content-body">
@@ -22,7 +23,7 @@
   </header>
   <div class="row" id="pageDocument">
     <div class="col-sm-6" style="text-align:center">
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-sm-6" style="text-align:left">
             <h3 class="disconnect">@if ($server->is_connected && $activity) Current Activity:{{$activity->name}} @endif</h3>
         </div>
@@ -38,11 +39,12 @@
           <button class="connect btn btn-primary" data-target="#add_activity" data-toggle="modal" style="@if ($server->is_connected) display:none @endif">Connect</button>
 
         </div>
-      </div>
-      <div class="row" style="padding-top:10px">
-        <textarea id="terminal_area" class="terminal" style="width:100%;height:70%;overflow-y:visible" value="{{$server->session_log}}" readonly>
+      </div> -->
+      <div id="terminal_area_div" class="row" style="padding-top:10px;height:700px">
+        <!-- <textarea id="terminal_area" class="terminal" style="width:100%;height:70%;overflow-y:visible" value="{{$server->session_log}}" readonly>
           {{$server->session_log}}
-        </textarea>
+        </textarea> -->
+        <iframe src="https://webssh.bartlweb.net" style="width:100%;height:100%;background-color:#fff"></iframe>
       </div>
     </div>
     <div class="col-sm-6" style="text-align:center">
@@ -104,7 +106,7 @@
   </div>
 </div>
 
-
+<script src="/assets/novnc/core/rfb.js"></script>
 <script>
 var cmd_id = 0;
 $('.activity_form').submit(function(e){
@@ -215,42 +217,42 @@ function disconnect(){
 }
 
 $(document).ready(function(){
-  id = "{{$server->id}}";
-  setInterval(function(){
-    console.log('cmd',cmd_id);
-    $.ajax({
-      url: '/server/getcmd/' + id,
-      type: 'POST',
-      data: {'cmd_id':cmd_id},
-      async: true,
-      success: function (ret) {
-        console.log('getcmd', ret);
-        console.log('getcmd', cmd_id);
-        if (ret == 'wait'){
-
-        } else {
-          $('#cmd').prop('disabled', false);
-          $('#cmd').focus();
-          html = $('#terminal_area').html();
-          html = html + '\n';
-          if (ret != 'nothing'){
-            html = html + ret;
-          }
-          $('#terminal_area').html(html);
-          updatesessionlog();
-          cmd_id = 0;
-        }
-      },
-      error: function (ret){
-        console.log('getcmd', ret);
-        $(this).prop('disabled', false);
-      }
-    });
-  }, 1000);
+  // id = "{{$server->id}}";
+  // setInterval(function(){
+  //   console.log('cmd',cmd_id);
+  //   $.ajax({
+  //     url: '/server/getcmd/' + id,
+  //     type: 'POST',
+  //     data: {'cmd_id':cmd_id},
+  //     async: true,
+  //     success: function (ret) {
+  //       console.log('getcmd', ret);
+  //       console.log('getcmd', cmd_id);
+  //       if (ret == 'wait'){
+  //
+  //       } else {
+  //         $('#cmd').prop('disabled', false);
+  //         $('#cmd').focus();
+  //         html = $('#terminal_area').html();
+  //         html = html + '\n';
+  //         if (ret != 'nothing'){
+  //           html = html + ret;
+  //         }
+  //         $('#terminal_area').html(html);
+  //         updatesessionlog();
+  //         cmd_id = 0;
+  //       }
+  //     },
+  //     error: function (ret){
+  //       console.log('getcmd', ret);
+  //       $(this).prop('disabled', false);
+  //     }
+  //   });
+  // }, 1000);
+  target = document.getElementById('terminal_area_div');
+  var rfb = new RFB(target, '142.44.241.179:22');
 
 });
-
-
 </script>
 
 @endsection

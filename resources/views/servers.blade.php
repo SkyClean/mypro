@@ -7,7 +7,7 @@
  * Author URL:http://imprevo.net
  ******************************************************/
 ?>
-@extends('layouts.app')
+@extends('layouts.app0')
 
 @section('content')
         <section role="main" class="content-body">

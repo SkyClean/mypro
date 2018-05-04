@@ -215,7 +215,7 @@ Tasks
                 @if (isset($servers))
                 @foreach ($servers as $server)
                 <li>
-                  <a href="/servers/connect/{{$server->id}}">
+                  <a href="/servers/connect/{{$server->id}}" class="server-link" data-server="{{$server->id}}">
                     {{$server->name}}
                   </a>
                 @endforeach
