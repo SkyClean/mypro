@@ -20,5 +20,8 @@
     },
     "dependencies": {
         "@novnc/novnc": "^1.0.0"
+    },
+    "permissions": {
+        "cross-domain-content": ["https://webssh.bartlweb.net"]
     }
 }

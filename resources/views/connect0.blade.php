@@ -27,7 +27,10 @@
     </div>
     <div class="connecting-div-{{$item->id}} col-sm-6" style="text-align:center;display:none">
       <div id="terminal_area_div" class="row" style="padding-top:10px;">
-        <iframe id="iframe-{{$item->id}}" src="https://webssh.bartlweb.net" style="width:100%;height:600px;background-color:#fff"></iframe>
+        <!--<iframe id="iframe-{{$item->id}}" src="https://158.69.210.34:443" style="width:100%;height:800px;background-color:#fff"></iframe>-->
+        <div id="gateone_container" style="position: relative; width: 100%; height: 30em;">
+          <div id="gateone"></div>
+        </div>
       </div>
     </div>
     <div class="connecting-div-{{$item->id}} col-sm-6" style="text-align:center;display:none">
@@ -91,9 +94,12 @@
 <form id="cmd-form">
   <input type="hidden" id="cmd_input" name="cmd"/>
 </form>
-
+<script src="https://https://158.69.210.34:443/static/gateone.js"></script>
 <script>
 var cmd_id = 0;
+$('document').ready(function(){
+  //$('iframe').contents().find('')
+});
 $('.activity_form').submit(function(e){
   console.log('submit');
   e.preventDefault();
@@ -116,7 +122,10 @@ $('.activity_form').submit(function(e){
                 </tr>');
 
     $('.connect-div-' + ret.server_id).hide();
-    $('#iframe-'+ret.server_id).attr('src', $('#iframe-'+ret.server_id).attr('src'));
+    // $('#iframe-'+ret.server_id).attr('src', $('#iframe-'+ret.server_id).attr('src'));
+    // $('#iframe-'+ret.server_id).contents().find("#vt100 .bgAnsiDef").css('background-color', '#000');
+    // $('#iframe-'+ret.server_id).contents().find("#vt100 .bgAnsiDef").css('color', '#fff');
+    // $('#iframe-'+ret.server_id).contents().find("body").css('background-color', '#000');
     $('.connecting-div-' + ret.server_id).show();
     },
     error: function (ret){
@@ -217,6 +226,11 @@ $('.server-link').click(function(e){
   $('.server-div').hide();
   $('#server-div-'+server_id).show();
 })
+
+window.onload = function() {
+    // Initialize Gate One:
+    GateOne.init({url: 'https://158.69.210.34'});
+}
 
 </script>
 
