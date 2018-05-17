@@ -94,7 +94,7 @@
 <form id="cmd-form">
   <input type="hidden" id="cmd_input" name="cmd"/>
 </form>
-<script src="https://https://158.69.210.34:443/static/gateone.js"></script>
+<script src="https://158.69.210.34:443/static/gateone.js"></script>
 <script>
 var cmd_id = 0;
 $('document').ready(function(){
@@ -229,7 +229,7 @@ $('.server-link').click(function(e){
 
 window.onload = function() {
     // Initialize Gate One:
-    GateOne.init({url: 'https://158.69.210.34'});
+    GateOne.init({url: 'https://158.69.210.34:443'});
 }
 
 </script>
